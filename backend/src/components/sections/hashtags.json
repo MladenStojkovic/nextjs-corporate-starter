@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_hashtags",
+  "info": {
+    "displayName": "Hashtags",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "tag": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.hashtag"
+    }
+  }
+}

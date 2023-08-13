@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_client_logos",
+  "info": {
+    "displayName": "ClientLogos"
+  },
+  "options": {},
+  "attributes": {
+    "picture": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    }
+  }
+}

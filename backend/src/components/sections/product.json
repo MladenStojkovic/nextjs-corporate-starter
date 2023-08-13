@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_sections_products",
+  "info": {
+    "displayName": "Product",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "listItem": {
+      "displayName": "Product List Item",
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.product-list-item"
+    },
+    "url": {
+      "type": "string"
+    },
+    "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "urlText": {
+      "type": "string"
+    },
+    "reverseOrder": {
+      "type": "boolean"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.button"
+    }
+  }
+}

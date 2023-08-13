@@ -4,7 +4,6 @@ import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
 import { fetchAPI } from "./utils/fetch-api";
 
 import { i18n } from "../../../i18n-config";
-import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import {FALLBACK_SEO} from "@/app/[lang]/utils/constants";
@@ -75,7 +74,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
-      <body>
+      <body className="font-primary">
         <Navbar
           links={navbar.links}
           logoUrl={navbarLogoUrl}
@@ -86,8 +85,6 @@ export default async function RootLayout({
           {children}
         </main>
 
-        <Banner data={notificationBanner} />
-
         <Footer
           logoUrl={footerLogoUrl}
           logoText={footer.footerLogo.logoText}
@@ -95,6 +92,7 @@ export default async function RootLayout({
           categoryLinks={footer.categories.data}
           legalLinks={footer.legalLinks}
           socialLinks={footer.socialLinks}
+          description={footer.description}
         />
       </body>
     </html>

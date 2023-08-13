@@ -26,12 +26,7 @@ function FooterLink({ url, text }: FooterLink) {
   const path = usePathname();
   return (
     <li className="flex">
-      <Link
-        href={url}
-        className={`hover:dark:text-violet-400 ${
-          path === url && "dark:text-violet-400 dark:border-violet-400"
-        }}`}
-      >
+      <Link href={url} className="text-gray-200">
         {text}
       </Link>
     </li>
@@ -41,10 +36,7 @@ function FooterLink({ url, text }: FooterLink) {
 function CategoryLink({ attributes }: CategoryLink) {
   return (
     <li className="flex">
-      <Link
-        href={`/blog/${attributes.slug}`}
-        className="hover:dark:text-violet-400"
-      >
+      <Link href={`/blog/${attributes.slug}`} className="text-gray-200">
         {attributes.name}
       </Link>
     </li>
@@ -54,13 +46,13 @@ function CategoryLink({ attributes }: CategoryLink) {
 function RenderSocialIcon({ social }: { social: string | undefined }) {
   switch (social) {
     case "WEBSITE":
-      return <CgWebsite />;
+      return <CgWebsite className="inline text-zinc-200" />;
     case "TWITTER":
-      return <AiFillTwitterCircle />;
+      return <AiFillTwitterCircle className="inline text-zinc-200" />;
     case "YOUTUBE":
-      return <AiFillYoutube />;
+      return <AiFillYoutube className="inline text-zinc-200" />;
     case "DISCORD":
-      return <FaDiscord />;
+      return <FaDiscord className="inline text-zinc-200" />;
     default:
       return null;
   }
@@ -73,6 +65,7 @@ export default function Footer({
   categoryLinks,
   legalLinks,
   socialLinks,
+  description
 }: {
   logoUrl: string | null;
   logoText: string | null;
@@ -80,16 +73,33 @@ export default function Footer({
   categoryLinks: Array<CategoryLink>;
   legalLinks: Array<FooterLink>;
   socialLinks: Array<FooterLink>;
+  description: string;
 }) {
-
   return (
-    <footer className="py-6 dark:bg-black dark:text-gray-50">
+    <footer className="py-6 bg-slate-900 text-zinc-400">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
         <div className="grid grid-cols-12">
           <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
-            <Logo src={logoUrl}>
-              {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
-            </Logo>
+            <div className="mb-6">
+              <Logo src={logoUrl}>
+                {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
+              </Logo>
+            </div>
+            <p className="mb-8">{description}</p>
+            {socialLinks.map((link: FooterLink) => {
+              return (
+                <a
+                  key={link.id}
+                  rel="noopener noreferrer"
+                  href={link.url}
+                  title={link.text}
+                  target={link.newTab ? "_blank" : "_self"}
+                  className="inline w-10 h-10 rounded-full mr-1 p-3 bg-zinc-600"
+                >
+                  <RenderSocialIcon social={link.social} />
+                </a>
+              );
+            })}
           </div>
 
           <div className="col-span-6 text-center md:text-left md:col-span-3">
@@ -110,38 +120,11 @@ export default function Footer({
             </ul>
           </div>
         </div>
-        <div className="grid justify-center pt-6 lg:justify-between">
+        <div className="grid justify-center pt-6">
           <div className="flex">
-            <span className="mr-2">
-              ©{new Date().getFullYear()} All rights reserved
+            <span className="mr-2 text-white">
+              ©{new Date().getFullYear()}. Crafted with love.
             </span>
-            <ul className="flex">
-              {legalLinks.map((link: FooterLink) => (
-                <Link
-                  href={link.url}
-                  className="text-gray-400 hover:text-gray-300 mr-2"
-                  key={link.id}
-                >
-                  {link.text}
-                </Link>
-              ))}
-            </ul>
-          </div>
-          <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
-            {socialLinks.map((link: FooterLink) => {
-              return (
-                <a
-                  key={link.id}
-                  rel="noopener noreferrer"
-                  href={link.url}
-                  title={link.text}
-                  target={link.newTab ? "_blank" : "_self"}
-                  className="flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900"
-                >
-                  <RenderSocialIcon social={link.social} />
-                </a>
-              );
-            })}
           </div>
         </div>
       </div>

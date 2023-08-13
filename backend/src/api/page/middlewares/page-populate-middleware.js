@@ -34,6 +34,21 @@ const populate = {
       submitButton: {
         populate: true,
       },
+      tag: {
+        populate: {
+          fields: ['title, description, picture'],
+          picture: {
+            populate: true
+          }
+        },
+      },
+      "join-us": {
+        populate: {
+          author: {
+            populate: true
+          }
+        }
+      }
     },
   },
   seo: {
@@ -50,8 +65,6 @@ module.exports = (config, { strapi }) => {
       filters: { slug: ctx.query.filters.slug },
       locale: ctx.query.locale,
     };
-
-    console.log("page-populate-middleware.js: ctx.query = ", ctx.query);
 
     await next();
   };
